@@ -10,27 +10,13 @@ import {
   Tooltip,
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import MuiAlert, { AlertProps } from '@mui/material/Alert';
 import React, { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import { carSchema } from '@/lib/carSchema';
 import Image from 'next/image';
 import { useAtlasUser } from '@/context/UserContext';
 import { Suspense } from 'react';
-
-const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
-  props,
-  ref
-) {
-  return (
-    <MuiAlert
-      elevation={6}
-      ref={ref}
-      variant="standard"
-      {...props}
-    />
-  );
-});
+import { useError } from '@/context/ErrorContext';
 
 const steps = ['Search by VIN', 'Enter specs manually', 'Add your car'];
 const authKey = process.env.NEXT_PUBLIC_CARMD_AUTH_KEY;
@@ -54,18 +40,7 @@ export default function StartForm({
     transmission?: string;
     mileage?: number;
   } | null>({});
-  const [error, setError] = useState(false);
-
-  const handleCloseError = (
-    event?: React.SyntheticEvent | Event,
-    reason?: string
-  ) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
-    setError(false);
-  };
+  const { setError } = useError();
 
   const formik = useFormik({
     initialValues: {
@@ -240,21 +215,10 @@ export default function StartForm({
   }, [formik.values.make]);
 
   return (
-    <Backdrop open={openModal}>
-      <Snackbar
-        open={error}
-        autoHideDuration={3000}
-        onClose={handleCloseError}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
-      >
-        <Alert
-          onClose={handleCloseError}
-          severity="warning"
-          sx={{ backgroundColor: '#ef4444' }}
-        >
-          An API error occured. Please try again.
-        </Alert>
-      </Snackbar>
+    <Backdrop
+      open={openModal}
+      className="z-10"
+    >
       <Paper className="w-full max-w-xl p-5 rounded-2xl">
         <h1 className="text-left font-bold font-serif text-secondary-dark">
           {user?.cars?.length === 0 ? 'Add a car to get started' : 'Add a car'}

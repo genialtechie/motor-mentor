@@ -1,5 +1,4 @@
 import prisma from '@/lib/prisma/prisma';
-
 import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
@@ -28,7 +27,7 @@ export async function POST(request: Request) {
         cars: true,
       },
     });
-    return NextResponse.json({ car: user.car });
+    return NextResponse.json({ car: user.cars[0] });
   } catch (error) {
     console.log(error);
     return NextResponse.json({ error, message: 'Error creating car' });

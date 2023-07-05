@@ -52,11 +52,35 @@ export default function CarInfo({
             </div>
           </div>
         ) : (
-          <Skeleton
-            variant="rectangular"
-            width="100%"
-            height="100%"
-          />
+          <div className="flex flex-row p-5">
+            <Skeleton
+              variant="rectangular"
+              width={200}
+              height={120}
+            />
+            <div className="p-5 w-full h-full flex flex-col justify-between items-center">
+              <Skeleton
+                variant="text"
+                width={'80%'}
+                height={20}
+              />
+              <Skeleton
+                variant="text"
+                width={'80%'}
+                height={20}
+              />
+              <Skeleton
+                variant="text"
+                width={'80%'}
+                height={20}
+              />
+              <Skeleton
+                variant="text"
+                width={'80%'}
+                height={20}
+              />
+            </div>
+          </div>
         )}
       </Card>
       <StartForm

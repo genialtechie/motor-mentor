@@ -4,10 +4,12 @@ export default function ButtonPrimary({
   children,
   className,
   href,
+  onClick,
 }: {
   children: React.ReactNode;
   className?: string;
   href: string;
+  onClick?: () => void;
 }) {
   return (
     <Link
@@ -16,6 +18,7 @@ export default function ButtonPrimary({
         className +
         ' px-2 py-1 bg-primary border-white border-2 text-white rounded-lg hover:bg-white hover:text-primary transition-all duration-300 ease-in-out'
       }
+      onClick={onClick}
     >
       {children}
     </Link>
