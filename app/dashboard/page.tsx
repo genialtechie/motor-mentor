@@ -7,6 +7,7 @@ import MuiAlert, { AlertProps } from '@mui/material/Alert';
 import { Suspense } from 'react';
 import CarInfo from '../components/dashboard/CarInfo';
 import QuickCheck from '../components/dashboard/QuickCheck';
+import DiagnoseCode from '../components/dashboard/DiagnoseCode';
 import { useError } from '@/context/ErrorContext';
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
@@ -24,7 +25,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
 });
 
 export default withPageAuthRequired(function Dashboard(): JSX.Element {
-  const { user, setUser } = useAtlasUser();
+  const { user, setUser } = useAtlasUser(); //user context
   const [openCarModal, setOpenCarModal] = useState(false);
   const { error, setError, handleCloseError } = useError();
   //fetch user from api/user endpoint on page load
@@ -74,8 +75,9 @@ export default withPageAuthRequired(function Dashboard(): JSX.Element {
         openCarModal={openCarModal}
         setOpenCarModal={setOpenCarModal}
       />
-      <div className="my-10 w-fit mx-auto grid grid-cols-1 gap-10 md:grid-cols-2">
+      <div className="my-10 w-fit mx-auto grid grid-cols-1 gap-10 md:grid-cols-2 auto-rows-auto">
         <QuickCheck />
+        <DiagnoseCode />
       </div>
     </div>
   );

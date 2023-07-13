@@ -18,7 +18,7 @@ export default function DashboardLayout({
         navItems={[
           { name: 'Overview', href: '/dashboard' },
           { name: 'AI Chat', href: '/dashboard/chat' },
-          { name: 'Manage Cars', href: '/dashboard/cars' },
+          { name: 'Maintenance', href: '/dashboard/maint' },
         ]}
       />
       <Paper

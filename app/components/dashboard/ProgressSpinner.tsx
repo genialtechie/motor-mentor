@@ -2,7 +2,11 @@ import { CircularProgress, Avatar } from '@mui/material';
 import { WarningAmber, Done } from '@mui/icons-material';
 import { useEffect, useState } from 'react';
 
-export default function ProgressSpinner({ result }: { result: string }) {
+export default function ProgressSpinner({
+  result,
+}: {
+  result: 'failure' | 'success';
+}) {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {

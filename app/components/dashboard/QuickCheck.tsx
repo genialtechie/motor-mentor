@@ -71,7 +71,7 @@ export default function QuickCheck() {
 
   return (
     <Paper
-      className="p-5 max-w-md w-full"
+      className="p-5 max-w-md w-full h-fit"
       elevation={6}
     >
       <h1 className="text-xl font-bold font-serif text-left mb-2">
