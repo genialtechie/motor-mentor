@@ -44,7 +44,7 @@ export default function Sidebar({
             </div>
             <MenuList className="pl-3">
               {navItems.map((item, index) => {
-                const isActive = pathname?.startsWith(`${item.href}`);
+                const isActive = pathname === item.href;
                 return (
                   <Link
                     href={item.href || ''}

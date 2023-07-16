@@ -38,7 +38,7 @@ export default function StartForm({
     model?: string;
     engine?: string;
     transmission?: string;
-    mileage?: number;
+    mileage?: any;
   } | null>({});
   const { setError } = useError();
 
@@ -54,11 +54,13 @@ export default function StartForm({
     },
     validationSchema: carSchema,
     onSubmit: (values) => {
+      console.log(values);
       // get car data from api
       let url = '';
       if (values.year && values.make && values.model) {
         setCarData({ ...values });
-      } else if (values.vin) {
+      } else {
+        console.log('vin', values.vin);
         url = `https://api.carmd.com/v3.0/decode?vin=${values.vin}`;
 
         fetch(url, {
@@ -262,20 +264,36 @@ export default function StartForm({
         >
           {activeStep === 0 && (
             <div className="flex flex-col">
-              <label className="text-secondary-dark font-bold">
-                VIN <br />
-                <input
-                  type="text"
-                  className="uppercase border focus:outline focus:outline-secondary-dark text-black font-normal focus:border-secondary-dark rounded-md p-2"
-                  id="vin"
-                  {...formik.getFieldProps('vin')}
-                />
-                {formik.touched.vin && formik.errors.vin ? (
-                  <div className="text-red-500 text-xs font-normal">
-                    {formik.errors.vin}
-                  </div>
-                ) : null}
-              </label>
+              <div className="flex flex-col md:flex-row">
+                <label className="text-secondary-dark font-bold">
+                  VIN <br />
+                  <input
+                    type="text"
+                    className="uppercase border focus:outline focus:outline-secondary-dark text-black font-normal focus:border-secondary-dark rounded-md p-2"
+                    id="vin"
+                    {...formik.getFieldProps('vin')}
+                  />
+                  {formik.touched.vin && formik.errors.vin ? (
+                    <div className="text-red-500 text-xs font-normal">
+                      {formik.errors.vin}
+                    </div>
+                  ) : null}
+                </label>
+                <label className="text-secondary-dark font-bold mt-3 md:mt-0 md:ml-5">
+                  Mileage <br />
+                  <input
+                    type="text"
+                    className="uppercase border focus:outline focus:outline-secondary-dark text-black font-normal focus:border-secondary-dark rounded-md p-2"
+                    id="mileage"
+                    {...formik.getFieldProps('mileage')}
+                  />
+                  {formik.touched.mileage && formik.errors.mileage ? (
+                    <div className="text-red-500 text-xs font-normal">
+                      {formik.errors.mileage}
+                    </div>
+                  ) : null}
+                </label>
+              </div>
 
               <Divider className="mt-3">OR</Divider>
               <span className="text-sm">For US users</span>
@@ -323,9 +341,9 @@ export default function StartForm({
                 className="bg-secondary-dark text-white rounded-md py-2 px-16 mt-2 mx-auto hover:bg-white hover:text-secondary-dark hover:border hover:border-secondary-dark"
                 type="submit"
                 disabled={
-                  formik.values.vin.length !== 17 &&
-                  (formik.values.plate.length !== 7 ||
-                    formik.values.usState === '')
+                  formik.values.vin.length !== 17 ||
+                  formik.values.mileage === 0 ||
+                  formik.values.mileage === ''
                 }
               >
                 Search
@@ -366,15 +384,14 @@ export default function StartForm({
                         >
                           Select make
                         </option>
-                        {makes?.length > 1 &&
-                          makes.map((make) => (
-                            <option
-                              key={make}
-                              value={make}
-                            >
-                              {make}
-                            </option>
-                          ))}
+                        {makes?.map((make) => (
+                          <option
+                            key={make}
+                            value={make}
+                          >
+                            {make}
+                          </option>
+                        ))}
                       </select>
                     </Tooltip>
                     {formik.touched.make && formik.errors.make ? (
@@ -437,7 +454,8 @@ export default function StartForm({
                 disabled={
                   formik.values.make === '' ||
                   formik.values.model === '' ||
-                  formik.values.year === ''
+                  formik.values.year === '' ||
+                  formik.values.mileage === 0
                 }
               >
                 Search
@@ -461,60 +479,39 @@ export default function StartForm({
                     height={50}
                   />
                   <div className="ml-4">
-                    <Suspense
-                      fallback={
-                        <Skeleton
-                          variant="text"
-                          width={150}
-                          height={20}
-                        />
-                      }
-                    >
+                    {carData.model ? (
                       <p className="uppercase">
                         {carData?.year} {carData?.make} {carData?.model}
                       </p>
-                    </Suspense>
-                    <Suspense
-                      fallback={
-                        <Skeleton
-                          variant="text"
-                          width={100}
-                          height={20}
-                        />
-                      }
-                    >
-                      {carData?.engine && (
-                        <p className="text-sm">Engine: {carData?.engine}</p>
-                      )}
-                    </Suspense>
-                    <Suspense
-                      fallback={
-                        <Skeleton
-                          variant="text"
-                          width={100}
-                          height={20}
-                        />
-                      }
-                    >
-                      {carData?.transmission && (
-                        <p className="text-sm">
-                          Transmission: {carData?.transmission}
-                        </p>
-                      )}
-                    </Suspense>
-                    <Suspense
-                      fallback={
-                        <Skeleton
-                          variant="text"
-                          width={100}
-                          height={20}
-                        />
-                      }
-                    >
-                      {carData?.mileage && (
-                        <p className="text-sm">Mileage: {carData?.mileage}</p>
-                      )}
-                    </Suspense>
+                    ) : (
+                      <Skeleton
+                        variant="text"
+                        width={100}
+                        height={20}
+                      />
+                    )}
+
+                    {carData?.engine ? (
+                      <p className="text-sm">Engine: {carData?.engine}</p>
+                    ) : (
+                      <Skeleton
+                        variant="text"
+                        width={100}
+                        height={20}
+                      />
+                    )}
+
+                    {carData?.transmission ? (
+                      <p className="text-sm">
+                        Transmission: {carData?.transmission}
+                      </p>
+                    ) : (
+                      <Skeleton
+                        variant="text"
+                        width={100}
+                        height={20}
+                      />
+                    )}
                   </div>
                 </div>
               ) : (

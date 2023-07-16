@@ -97,14 +97,8 @@ export default function DashNav({
                   <MenuList
                     autoFocusItem={openProfileMenu}
                     id="menu-list-grow"
+                    className="font-serif"
                   >
-                    <Link href="/dashboard/profile">
-                      <MenuItem className="text-sm font-semibold">
-                        <Person2Icon className="mr-2 scale-90 inline-block" />
-                        Profile
-                      </MenuItem>
-                    </Link>
-
                     <Link href="/dashboard/settings">
                       <MenuItem className="text-sm font-semibold">
                         <SettingsIcon className="mr-2 scale-90 inline-block" />

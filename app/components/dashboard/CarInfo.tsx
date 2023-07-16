@@ -13,7 +13,7 @@ export default function CarInfo({
   const { user } = useAtlasUser();
   return (
     <>
-      <Card className="max-w-3xl w-full h-fit mx-auto">
+      <Card className="max-w-3xl w-full h-fit mx-auto rounded-xl">
         {user?.cars && user?.cars?.length > 0 ? (
           <div className="flex flex-row">
             <Image

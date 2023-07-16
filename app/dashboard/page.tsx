@@ -7,8 +7,8 @@ import MuiAlert, { AlertProps } from '@mui/material/Alert';
 import { Suspense } from 'react';
 import CarInfo from '../components/dashboard/CarInfo';
 import QuickCheck from '../components/dashboard/QuickCheck';
-import DiagnoseCode from '../components/dashboard/DiagnoseCode';
 import { useError } from '@/context/ErrorContext';
+import TryPremium from '../components/dashboard/TryPremium';
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
   props,
@@ -77,7 +77,7 @@ export default withPageAuthRequired(function Dashboard(): JSX.Element {
       />
       <div className="my-10 w-fit mx-auto grid grid-cols-1 gap-10 md:grid-cols-2 auto-rows-auto">
         <QuickCheck />
-        <DiagnoseCode />
+        {user?.isSuscribed === false && <TryPremium />}
       </div>
     </div>
   );

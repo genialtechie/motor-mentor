@@ -12,6 +12,8 @@ model User {
   email     String   @unique
   name      String?
   providerId String?    @unique
+  isSuscribed  Boolean  @default(false)
+  stripeId  String? 
   createdAt DateTime @default(now())
   cars      Car[]
 }

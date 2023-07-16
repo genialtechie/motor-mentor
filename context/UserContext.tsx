@@ -16,6 +16,7 @@ export const UserContext = createContext<{
           transmission?: string;
         }[];
         id?: string;
+        isSuscribed?: boolean;
       }
     | undefined;
   setUser: (newUser: object) => void;

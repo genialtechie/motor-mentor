@@ -71,13 +71,14 @@ export default function QuickCheck() {
 
   return (
     <Paper
-      className="p-5 max-w-md w-full h-fit"
-      elevation={6}
+      className="p-5 max-w-md w-full rounded-xl"
+      elevation={3}
     >
       <h1 className="text-xl font-bold font-serif text-left mb-2">
         Safety Check
       </h1>
-      <Divider className="mb-6" />
+      <Divider />
+      <br />
       {!data && (result === 'failure' || result === 'pending') ? (
         <div>
           {!loading ? (
@@ -110,7 +111,7 @@ export default function QuickCheck() {
           </ul>
           {!loading && result === 'pending' && (
             <button
-              className="mx-auto block mt-3 w-32 h-10 px-2 py-1 bg-primary border-white border-2 text-white rounded-lg hover:bg-white/50 hover:text-primary transition-all duration-300 ease-in-out"
+              className="mx-auto block mt-3 w-32 h-10 px-2 py-1 bg-primary border-white border-2 text-white rounded-lg hover:bg-white/50 hover:text-primary hover:border-primary transition-all duration-300 ease-in-out"
               onClick={handleClick}
               disabled={loading || !user?.cars}
             >
