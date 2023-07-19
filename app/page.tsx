@@ -7,6 +7,7 @@ import mechanicAnimation from '../public/lotties/motormentor.json';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Pricing from './components/Pricing';
 
 export default function Home() {
   const { user, error, isLoading } = useUser();
@@ -22,13 +23,13 @@ export default function Home() {
     <div className="flex flex-col w-full min-h-screen">
       <Nav
         navItems={[
-          { name: 'Home', href: '/' },
+          { name: 'Features', href: '/#features' },
+          { name: 'Pricing', href: '/#pricing' },
           { name: 'Login', href: '/api/auth/login' },
-          { name: 'Pricing', href: '/pricing' },
         ]}
       />
-      <div className="container mt-10 mx-auto max-w-2xl p-5">
-        <h1 className="text-3xl md:text-5xl font-bold font-serif tracking-wide text-center">
+      <section className="container mt-20 mx-auto max-w-2xl p-5">
+        <h1 className="text-4xl md:text-5xl font-bold font-serif text-center">
           Step into the shoes of a seasoned mechanic
         </h1>
         <p className="text-center my-3 text-black/60">
@@ -42,12 +43,12 @@ export default function Home() {
           >
             Get Started
           </ButtonInverted>
-          {/* <a href="/api/auth/login">Get Started</a> */}
         </div>
-      </div>
+      </section>
       <div className="w-full px-5 flex-1 flex flex-col justify-center items-center">
         <Lottie animationData={mechanicAnimation} />
       </div>
+      <Pricing />
       <Footer />
     </div>
   );

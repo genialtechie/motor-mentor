@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import CloseIcon from '@mui/icons-material/Close';
 import { usePathname } from 'next/navigation';
+import { useAtlasUser } from '@/context/UserContext';
 
 export default function Sidebar({
   openSidebar,
@@ -14,6 +15,9 @@ export default function Sidebar({
   navItems: { href?: string; name?: string }[];
 }) {
   const pathname = usePathname();
+  const { user } = useAtlasUser();
+  const car = user?.cars ? user.cars[0] : null;
+  const isSuscribed = user?.isSuscribed;
   return (
     <>
       <Backdrop
@@ -45,6 +49,8 @@ export default function Sidebar({
             <MenuList className="pl-3">
               {navItems.map((item, index) => {
                 const isActive = pathname === item.href;
+                // if user is not suscribed remove item.name = 'AI Chat'
+                if (!isSuscribed && item.name === 'AI Chat') return null;
                 return (
                   <Link
                     href={item.href || ''}
