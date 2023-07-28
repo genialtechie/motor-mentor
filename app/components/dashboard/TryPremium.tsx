@@ -1,7 +1,11 @@
 import { Paper } from '@mui/material';
 import LaunchIcon from '@mui/icons-material/Launch';
+import { useAtlasUser } from '@/context/UserContext';
+import { usePathname } from 'next/navigation';
 
 export default function TryPremium(): JSX.Element {
+  const { user } = useAtlasUser();
+  const pathname = usePathname();
   return (
     <Paper
       className="max-w-md w-full bg-[url('/abstract-bg.jpg')] text-white"
@@ -14,8 +18,26 @@ export default function TryPremium(): JSX.Element {
           AI mechanic!
         </p>
         <a
-          href="http://"
-          className="w-fit py-2 px-4 font-semibold text-lg hover:bg-white hover:text-primary rounded-lg transition-all duration-300 ease-in-out"
+          onClick={() => {
+            fetch('/api/checkout-session', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                priceId: 'price_1NUaYhBiFHS9806cVvGf4vc0',
+                stripeId: user?.stripeId,
+                url: pathname,
+              }),
+            }).then((res) => {
+              if (res.ok) {
+                res.json().then((data) => {
+                  window.location.href = data.url;
+                });
+              }
+            });
+          }}
+          className="cursor-pointer w-fit py-2 px-4 font-semibold text-lg hover:bg-white hover:text-primary rounded-lg transition-all duration-300 ease-in-out"
         >
           Chat Now{' '}
           <LaunchIcon

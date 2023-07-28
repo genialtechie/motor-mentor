@@ -1,5 +1,7 @@
 import { getSession, withApiAuthRequired } from '@auth0/nextjs-auth0';
+import initStripe from 'stripe';
 import prisma from '@/lib/prisma/prisma';
+const stripe = initStripe(process.env.STRIPE_SECRET_KEY);
 
 export default withApiAuthRequired(async function handler(req, res) {
   if (req.method === 'GET') {
@@ -8,6 +10,10 @@ export default withApiAuthRequired(async function handler(req, res) {
       const loggedInUser = session.user;
       // find or create user in db
 
+      const customer = await stripe.customers.create({
+        email: loggedInUser.email,
+      });
+
       const user = await prisma.user.upsert({
         where: { email: loggedInUser.email },
         update: {},
@@ -15,6 +21,7 @@ export default withApiAuthRequired(async function handler(req, res) {
           email: loggedInUser.email,
           name: loggedInUser.name,
           providerId: loggedInUser.sub,
+          stripeId: customer.id,
         },
         include: {
           cars: {

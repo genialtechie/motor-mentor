@@ -17,6 +17,7 @@ export const UserContext = createContext<{
         }[];
         id?: string;
         isSuscribed?: boolean;
+        stripeId?: string;
       }
     | undefined;
   setUser: (newUser: object) => void;

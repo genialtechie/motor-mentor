@@ -1,42 +1,47 @@
-# Vercel AI SDK, Next.js, and OpenAI Chat Example
+# MotorMentor - AI Powered Car Diagnosis
 
-This example shows how to use the [Vercel AI SDK](https://sdk.vercel.ai/docs) with [Next.js](https://nextjs.org/) and [OpenAI](https://openai.com) to create a ChatGPT-like AI-powered streaming chat bot.
+This is an Ai app that tells you what could be wrong with your car based on the symptoms you provide. You can also get possible maintenance updates and recall information directly to your email.
 
-## Deploy your own
+## Features
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=ai-sdk-example):
+- [x] Diagnosis
+- [x] Maintenance Updates
+- [x] Recall Information
+- [x] Email Notifications
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel-labs%2Fai%2Ftree%2Fmain%2Fexamples%2Fnext-openai&env=OPENAI_API_KEY&envDescription=OpenAI%20API%20Key&envLink=https%3A%2F%2Fplatform.openai.com%2Faccount%2Fapi-keys&project-name=vercel-ai-chat-openai&repository-name=vercel-ai-chat-openai)
-
-## How to use
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
-
-```bash
-npx create-next-app --example https://github.com/vercel-labs/ai/tree/main/examples/next-openai next-openai-app
-```
-
-```bash
-yarn create next-app --example https://github.com/vercel-labs/ai/tree/main/examples/next-openai next-openai-app
-```
-
-```bash
-pnpm create next-app --example https://github.com/vercel-labs/ai/tree/main/examples/next-openai next-openai-app
-```
+## Requirements
 
 To run the example locally you need to:
 
 1. Sign up at [OpenAI's Developer Platform](https://platform.openai.com/signup).
 2. Go to [OpenAI's dashboard](https://platform.openai.com/account/api-keys) and create an API KEY.
-3. Set the required OpenAI environment variable as the token value as shown [the example env file](./.env.local.example) but in a new file called `.env.local`
-4. `pnpm install` to install the required dependencies.
-5. `pnpm dev` to launch the development server.
+3. Sign up at [Stripe](https://stripe.com) and get your API keys.
+4. Sign up at [Auth0](https://auth0.com) and get your API keys.
+5. Sign up at [CarMD](https://www.carmd.com/) and get your API keys.
+6. Sign up at [MongoDB](https://www.mongodb.com/) and get your DB URI.
+7. Set the required environment variables as the token value as shown [the example env file](./.env.local.example) but in a new file called `.env.local`
+8. `pnpm install` or `npm install` to install the required dependencies.
+9. Run `npx prisma generate` to generate the Prisma client.
+10. Run `npx prisma db push` to create the database tables.
+11. `pnpm dev` or `npm run dev` to start the development server.
 
-## Learn More
+## Resources
 
-To learn more about OpenAI, Next.js, and the Vercel AI SDK take a look at the following resources:
-
-- [Vercel AI SDK docs](https://sdk.vercel.ai/docs)
-- [Vercel AI Playground](https://play.vercel.ai)
+- [Magpollo](https://magpollo.com/) - learn about Magpollo.
+- [Stripe API docs](https://stripe.com/docs/api) - learn about the Stripe API.
+- [Auth0 Next.js SDK docs](https://auth0.com/docs/quickstart/webapp/nextjs) - learn about the Auth0 Next.js SDK.
+- [Prisma docs](https://www.prisma.io/docs/) - learn about Prisma.
+- [Material UI](https://material-ui.com/) - learn about Material UI.
+- [CarMd API docs](https://api.carmd.com/member/docs) - learn about the CarMD API.
+- [Vercel AI SDK docs](https://sdk.vercel.ai/docs) - learn about the Vercel AI SDK.
 - [OpenAI Documentation](https://platform.openai.com/docs) - learn about OpenAI features and API.
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+
+## TODO
+
+- [] stripe webhook
+- [] homepage features section
+- [] ai chatbot
+- [] maintenance page
+- [] settings page
+- [] track multiple cars for suscribers
