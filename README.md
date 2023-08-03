@@ -39,7 +39,7 @@ To run the example locally you need to:
 
 ## TODO
 
-- [] stripe webhook
+- [x] stripe webhook
 - [] homepage features section
 - [] ai chatbot
 - [] maintenance page

@@ -8,6 +8,7 @@ import { useUser } from '@auth0/nextjs-auth0/client';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Pricing from './components/Pricing';
+import Features from './components/Features';
 
 export default function Home() {
   const { user, error, isLoading } = useUser();
@@ -48,6 +49,7 @@ export default function Home() {
       <div className="w-full px-5 flex-1 flex flex-col justify-center items-center">
         <Lottie animationData={mechanicAnimation} />
       </div>
+      <Features />
       <Pricing />
       <Footer />
     </div>

@@ -3,6 +3,25 @@ import initStripe from 'stripe';
 import prisma from '@/lib/prisma/prisma';
 const stripe = initStripe(process.env.STRIPE_SECRET_KEY);
 
+//fetch customer from stripe or create new customer
+//create user in db if not exists
+async function createCustomer(email) {
+  try {
+    let existingCustomer = await stripe.customers.list({ email: email });
+    existingCustomer = existingCustomer.data;
+    if (existingCustomer && existingCustomer.length > 0) {
+      return existingCustomer[0];
+    } else {
+      const customer = await stripe.customers.create({
+        email: email,
+      });
+      return customer;
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export default withApiAuthRequired(async function handler(req, res) {
   if (req.method === 'GET') {
     try {
@@ -10,9 +29,7 @@ export default withApiAuthRequired(async function handler(req, res) {
       const loggedInUser = session.user;
       // find or create user in db
 
-      const customer = await stripe.customers.create({
-        email: loggedInUser.email,
-      });
+      const customer = await createCustomer(loggedInUser.email);
 
       const user = await prisma.user.upsert({
         where: { email: loggedInUser.email },

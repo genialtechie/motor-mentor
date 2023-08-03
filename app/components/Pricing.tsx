@@ -51,7 +51,7 @@ export default function Pricing(): JSX.Element {
               className="block mx-auto text-center py-3 rounded-xl font-bold "
               href="/api/auth/login"
             >
-              Suscribe
+              Get Started
             </ButtonPrimary>
             <p className="my-2 text-slate-500 text-center text-lg">
               Everything you need to get started

@@ -13,8 +13,6 @@ export async function POST(request: Request) {
   const stripeId = body.stripeId;
   const url = body.url;
 
-  console.log(url);
-
   const session = await stripe.checkout.sessions.create({
     customer: stripeId,
     mode: 'subscription',

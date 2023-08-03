@@ -16,17 +16,33 @@ export const config = {
   },
 };
 
+async function fulfillOrder(session: Stripe.Checkout.Session) {
+  const customer = await stripe.customers.retrieve(session.customer as string);
+  const email = customer.email as string;
+  console.log('customer', customer);
+
+  if (customer.email) {
+    await prisma.user.update({
+      where: {
+        email,
+      },
+      data: {
+        isSuscribed: true,
+      },
+    });
+  }
+}
+
 export async function POST(request: Request) {
   const sig = headers().get('stripe-signature') || '';
   const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET || '';
-  const body = await request.json();
-  const bufferReq = await buffer(body);
+  const body = await request.arrayBuffer();
+  const bufferReq = Buffer.from(body);
 
   let event: Stripe.Event;
 
   try {
-    event = stripe.webhooks.constructEvent(body, sig, endpointSecret);
-    console.log('event', event);
+    event = stripe.webhooks.constructEvent(bufferReq, sig, endpointSecret);
   } catch (err) {
     console.log(`⚠️  Webhook signature verification failed.`, err);
     return NextResponse.json({ error: err }, { status: 400 });
@@ -34,10 +50,31 @@ export async function POST(request: Request) {
 
   // Handle the event
   switch (event.type) {
-    case 'checkout.session.completed':
+    case 'customer.subscription.created':
       const session = event.data.object as Stripe.Checkout.Session;
       // Fulfill the purchase...
       await fulfillOrder(session);
+      break;
+    case 'customer.subscription.updated':
+      const sessionUpdated = event.data.object as Stripe.Checkout.Session;
+      // Fulfill the purchase...
+      await fulfillOrder(sessionUpdated);
+      break;
+    case 'customer.subscription.deleted':
+      const sessionDeleted = event.data.object as Stripe.Checkout.Session;
+      const customer = await stripe.customers.retrieve(
+        sessionDeleted.customer as string
+      );
+      const email = customer.email as string;
+      // Update the database...
+      await prisma.user.update({
+        where: {
+          email,
+        },
+        data: {
+          isSuscribed: false,
+        },
+      });
       break;
     default:
       console.log(`Unhandled event type ${event.type}`);
