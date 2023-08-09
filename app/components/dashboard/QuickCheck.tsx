@@ -7,6 +7,7 @@ import Image from 'next/image';
 import animation from '@/public/lotties/searching-files.json';
 import { useError } from '@/context/ErrorContext';
 import ButtonPrimary from '../shared/ButtonPrimary';
+import ReplayIcon from '@mui/icons-material/Replay';
 
 export async function fetcher(url: string) {
   const authKey = process.env.NEXT_PUBLIC_CARMD_AUTH_KEY;
@@ -138,7 +139,7 @@ export default function QuickCheck() {
             href="/dashboard/maint"
             className="mx-auto block text-center"
           >
-            See More Details
+            See Details
           </ButtonPrimary>
         </div>
       )}

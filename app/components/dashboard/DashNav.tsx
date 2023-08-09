@@ -51,7 +51,7 @@ export default function DashNav({
             className="mr-3 scale-125 cursor-pointer"
             onClick={() => setOpenSidebar(!openSidebar)}
           />
-          <a href="/">
+          <a href="/dashboard">
             <Image
               src="/logo-mm.svg"
               alt="MotorMentor"
@@ -92,7 +92,10 @@ export default function DashNav({
                   placement === 'bottom' ? 'center top' : 'center bottom',
               }}
             >
-              <Paper elevation={10}>
+              <Paper
+                elevation={10}
+                className="rounded-lg"
+              >
                 <ClickAwayListener onClickAway={handleClickOutside}>
                   <MenuList
                     autoFocusItem={openProfileMenu}
@@ -100,7 +103,10 @@ export default function DashNav({
                     className="font-serif"
                   >
                     <Link href="/dashboard/settings">
-                      <MenuItem className="text-sm font-semibold">
+                      <MenuItem
+                        className="text-sm font-semibold"
+                        onClick={handleClickOutside}
+                      >
                         <SettingsIcon className="mr-2 scale-90 inline-block" />
                         Settings
                       </MenuItem>

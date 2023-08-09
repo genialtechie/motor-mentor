@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 
 export const UserContext = createContext<{
   user:
@@ -25,6 +25,15 @@ export const UserContext = createContext<{
 
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState({});
+
+  //fetch user from api/user endpoint on page load
+  useEffect(() => {
+    fetch('/api/user')
+      .then((res) => res.json())
+      .then((data) => {
+        setUser(data.user);
+      });
+  }, []);
 
   return (
     <UserContext.Provider value={{ user, setUser }}>

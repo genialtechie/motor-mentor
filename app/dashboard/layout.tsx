@@ -22,7 +22,7 @@ export default function DashboardLayout({
         ]}
       />
       <Paper
-        className="p-7 h-fit w-full max-w-6xl mx-auto rounded-t-3xl md:rounded-3xl mt-2"
+        className="p-7 min-h-screen w-full max-w-6xl mx-auto rounded-t-3xl md:rounded-3xl mt-2"
         elevation={6}
       >
         {children}

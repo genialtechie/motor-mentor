@@ -9,6 +9,7 @@ import CarInfo from '../components/dashboard/CarInfo';
 import QuickCheck from '../components/dashboard/QuickCheck';
 import { useError } from '@/context/ErrorContext';
 import TryPremium from '../components/dashboard/TryPremium';
+import ChatNow from '../components/dashboard/ChatNow';
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
   props,
@@ -25,23 +26,9 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
 });
 
 export default withPageAuthRequired(function Dashboard(): JSX.Element {
-  const { user, setUser } = useAtlasUser(); //user context
+  const { user } = useAtlasUser(); //user context
   const [openCarModal, setOpenCarModal] = useState(false);
   const { error, setError, handleCloseError } = useError();
-  //fetch user from api/user endpoint on page load
-  useEffect(() => {
-    fetch('/api/user')
-      .then((res) => res.json())
-      .then((data) => {
-        setUser(data.user);
-      });
-  }, []);
-  //check if user has cars and open car modal if not
-  useEffect(() => {
-    if (user?.cars && user?.cars?.length < 1) {
-      setOpenCarModal(true);
-    }
-  }, [user]);
 
   return (
     <div>
@@ -78,6 +65,7 @@ export default withPageAuthRequired(function Dashboard(): JSX.Element {
       <div className="my-10 w-fit mx-auto grid grid-cols-1 gap-10 md:grid-cols-2 auto-rows-auto">
         <QuickCheck />
         {user?.isSuscribed === false && <TryPremium />}
+        {user?.isSuscribed === true && <ChatNow />}
       </div>
     </div>
   );

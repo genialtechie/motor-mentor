@@ -40,8 +40,8 @@ To run the example locally you need to:
 ## TODO
 
 - [x] stripe webhook
-- [] homepage features section
+- [x] homepage features section
 - [] ai chatbot
-- [] maintenance page
-- [] settings page
+- [x] maintenance page
+- [x] settings page
 - [] track multiple cars for suscribers
