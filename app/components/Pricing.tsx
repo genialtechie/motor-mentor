@@ -9,7 +9,7 @@ export default function Pricing(): JSX.Element {
       id="pricing"
     >
       <div className="container mx-auto max-w-2xl">
-        <h2 className="text-5xl font-semibold font-serif mt-5 mb-20">
+        <h2 className="text-5xl text-black font-semibold font-serif mt-5 mb-20">
           Simple pricing for all your needs
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">

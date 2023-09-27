@@ -302,7 +302,7 @@ export default function Maint(): JSX.Element {
             {/* find all maintenances due at the highest due_mileage */}
             {pastDue && pastDue?.length}
           </Avatar>{' '}
-          {pastDue.length > 0 && (
+          {pastDue?.length > 0 && (
             <i className="text-xs ml-2 mt-1 font-normal">
               at {pastDue[0].due_mileage} miles
             </i>

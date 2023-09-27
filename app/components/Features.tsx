@@ -70,7 +70,7 @@ export default function Features(): JSX.Element {
       id="features"
       className="bg-off-white w-full h-fit p-10"
     >
-      <h1 className="text-4xl md:text-6xl text-center font-extrabold mb-16 mt-5 font-serif tracking-wide">
+      <h1 className="text-4xl text-black md:text-6xl text-center font-extrabold mb-16 mt-5 font-serif tracking-wide">
         Why MotorMentor?
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-20 md:mb-32">
@@ -108,7 +108,7 @@ export default function Features(): JSX.Element {
           </motion.div>
         </div>
         <div className="mb-10 flex flex-col md:justify-center md:order-1">
-          <h1 className="text-4xl font-semibold mt-10 mb-5">Chat</h1>
+          <h1 className="text-4xl text-black font-semibold mt-10 mb-5">Chat</h1>
           <p className="text-black/60 md:text-lg">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium
             soluta ad amet sed ipsam, ab necessitatibus illo officia

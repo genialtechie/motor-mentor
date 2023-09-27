@@ -45,3 +45,4 @@ To run the example locally you need to:
 - [x] maintenance page
 - [x] settings page
 - [] track multiple cars for suscribers
+- [] add more pizzaz to successful suscription page

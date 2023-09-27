@@ -2,10 +2,10 @@
 import Paper from '@mui/material/Paper';
 import DashNav from '../components/dashboard/DashNav';
 
-export const metadata = {
-  title: 'Dashboard | MotorMentor by Magpollo',
-  description: 'Your personal car expert',
-};
+// export const metadata = {
+//   title: 'Dashboard | MotorMentor by Magpollo',
+//   description: 'Your personal car expert',
+// };
 
 export default function DashboardLayout({
   children,
@@ -17,7 +17,7 @@ export default function DashboardLayout({
       <DashNav
         navItems={[
           { name: 'Overview', href: '/dashboard' },
-          { name: 'AI Chat', href: '/dashboard/chat' },
+          { name: 'AI Chat', href: '/chat' },
           { name: 'Maintenance', href: '/dashboard/maint' },
         ]}
       />
