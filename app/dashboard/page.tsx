@@ -25,6 +25,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
   );
 });
 
+// @ts-ignore
 export default withPageAuthRequired(function Dashboard(): JSX.Element {
   const { user } = useAtlasUser(); //user context
   const [openCarModal, setOpenCarModal] = useState(false);
