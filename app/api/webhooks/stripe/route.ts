@@ -10,11 +10,6 @@ const stripe = new Stripe(stripeKey, {
 });
 
 //listen for webhooks
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
 
 async function fulfillOrder(session: Stripe.Checkout.Session) {
   const customer = await stripe.customers.retrieve(session.customer as string);
