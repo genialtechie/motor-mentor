@@ -343,7 +343,7 @@ export default function StartForm({
                 disabled={
                   formik.values.vin.length !== 17 ||
                   formik.values.mileage === 0 ||
-                  formik.values.mileage === ''
+                  formik.values.mileage < 1000
                 }
               >
                 Search

@@ -6,7 +6,7 @@ export async function POST(request: Request) {
   const body = await request.json();
   try {
     // find user by id and update car
-    const user = await prisma.user.update({
+    const user = await prisma?.user.update({
       where: {
         id: body.userId,
       },
@@ -27,7 +27,7 @@ export async function POST(request: Request) {
         cars: true,
       },
     });
-    return NextResponse.json({ car: user.cars[0] });
+    return NextResponse.json({ car: user?.cars[0] });
   } catch (error) {
     console.log(error);
     return NextResponse.json({ error, message: 'Error creating car' });

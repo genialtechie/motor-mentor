@@ -46,18 +46,27 @@ export default function QuickCheck() {
   async function handleClick() {
     setLoading(!loading);
     try {
-      const recallData = await fetcher(
-        `http://api.carmd.com/v3.0/recall?year=${user?.cars[0].year}&make=${user?.cars[0].make}&model=${user?.cars[0].model}`
-      );
-      const maintData = await fetcher(
-        `http://api.carmd.com/v3.0/maint?year=${user?.cars[0].year}&make=${user?.cars[0].make}&model=${user?.cars[0].model}&mileage=${user?.cars[0].mileage}`
-      );
+      // Check if user and user.cars are defined and user.cars is not empty
+      if (user && user.cars && user.cars.length > 0) {
+        const car = user.cars[0];
+        const recallData = await fetcher(
+          `http://api.carmd.com/v3.0/recall?year=${car.year}&make=${car.make}&model=${car.model}`
+        );
+        const maintData = await fetcher(
+          `http://api.carmd.com/v3.0/maint?year=${car.year}&make=${car.make}&model=${car.model}&mileage=${car.mileage}`
+        );
 
-      if (recallData.data && maintData.data) {
-        // add recall and maint data to local storage
-        const dataObj = { recalls: recallData.data, maint: maintData.data };
-        setData(dataObj);
+        if (recallData.data && maintData.data) {
+          // add recall and maint data to local storage
+          const dataObj = { recalls: recallData.data, maint: maintData.data };
+          setData(dataObj);
+        } else {
+          setError(true);
+          setResult('failure');
+        }
       } else {
+        // Handle the case where user or user.cars is undefined, or user.cars is empty
+        console.error('User or user.cars is undefined, or user.cars is empty');
         setError(true);
         setResult('failure');
       }

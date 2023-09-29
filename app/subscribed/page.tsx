@@ -7,8 +7,8 @@ import ButtonPrimary from '../components/shared/ButtonPrimary';
 
 export default function SuscribeResult() {
   const searchParams = useSearchParams();
-  const success = searchParams.get('success');
-  const prevUrl = searchParams.get('prevurl');
+  const success = searchParams ? searchParams.get('success') : null;
+  const prevUrl = searchParams ? searchParams.get('prevurl') : null;
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">

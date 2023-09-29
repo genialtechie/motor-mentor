@@ -13,11 +13,13 @@ const stripe = new Stripe(stripeKey, {
 
 async function fulfillOrder(session: Stripe.Checkout.Session) {
   const customer = await stripe.customers.retrieve(session.customer as string);
-  const email = customer.email as string;
-  console.log('customer', customer);
+  let email = '';
+  if ('email' in customer) {
+    email = customer.email as string;
+  }
 
-  if (customer.email) {
-    await prisma.user.update({
+  if (email) {
+    await prisma?.user.update({
       where: {
         email,
       },
@@ -60,9 +62,10 @@ export async function POST(request: Request) {
       const customer = await stripe.customers.retrieve(
         sessionDeleted.customer as string
       );
-      const email = customer.email as string;
+      let email = '';
+      if ('email' in customer) email = customer.email as string;
       // Update the database...
-      await prisma.user.update({
+      await prisma?.user.update({
         where: {
           email,
         },
