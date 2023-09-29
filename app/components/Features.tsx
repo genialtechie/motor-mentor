@@ -80,7 +80,7 @@ export default function Features(): JSX.Element {
             whileInView={{ opacity: 1, scaleX: 1 }}
             transition={{ duration: 0.5 }}
           >
-            <Paper className="h-80 w-72 md:h-96 md:w-80 bg-white mx-auto relative">
+            <Paper className="h-80 w-72 md:h-96 md:w-80 bg-white mx-auto relative pb-3">
               <AnimatedChatBoxUser>
                 My car wont start, what could be the problem?
               </AnimatedChatBoxUser>
@@ -90,20 +90,22 @@ export default function Features(): JSX.Element {
                 alternator. If you hear a clicking noise when you turn the key,
                 it could be a problem..
               </AnimatedChatBoxBot>
-              <TextField
-                disabled
-                id="outlined-basic"
-                label="Type here..."
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <SendIcon className="origin-center -rotate-45" />
-                    </InputAdornment>
-                  ),
-                }}
-                variant="outlined"
-                className="w-5/6 inset-x-0 mx-auto absolute bottom-3"
-              />
+              <div className="h-fit w-5/6 inset-x-0 mx-auto absolute bottom-0">
+                <TextField
+                  disabled
+                  id="outlined-basic"
+                  label="Type here..."
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <SendIcon className="origin-center -rotate-45" />
+                      </InputAdornment>
+                    ),
+                  }}
+                  variant="outlined"
+                  className="mb-3 w-full"
+                />
+              </div>
             </Paper>
           </motion.div>
         </div>
