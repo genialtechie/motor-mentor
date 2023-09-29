@@ -81,6 +81,15 @@ export default function Features(): JSX.Element {
             transition={{ duration: 0.5 }}
           >
             <Paper className="h-80 w-72 md:h-96 md:w-80 bg-white mx-auto relative">
+              <AnimatedChatBoxUser>
+                My car wont start, what could be the problem?
+              </AnimatedChatBoxUser>
+              <AnimatedChatBoxBot>
+                There are many reasons why a car won't start. Some of the most
+                common reasons are problems with the battery, starter, or
+                alternator. If you hear a clicking noise when you turn the key,
+                it could be a problem..
+              </AnimatedChatBoxBot>
               <TextField
                 disabled
                 id="outlined-basic"
@@ -95,15 +104,6 @@ export default function Features(): JSX.Element {
                 variant="outlined"
                 className="w-5/6 inset-x-0 mx-auto absolute bottom-3"
               />
-              <AnimatedChatBoxUser>
-                My car wont start, what could be the problem?
-              </AnimatedChatBoxUser>
-              <AnimatedChatBoxBot>
-                There are many reasons why a car won't start. Some of the most
-                common reasons are problems with the battery, starter, or
-                alternator. If you hear a clicking noise when you turn the key,
-                it could be a problem..
-              </AnimatedChatBoxBot>
             </Paper>
           </motion.div>
         </div>
