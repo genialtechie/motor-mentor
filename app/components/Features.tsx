@@ -112,10 +112,11 @@ export default function Features(): JSX.Element {
         <div className="mb-10 flex flex-col md:justify-center md:order-1">
           <h1 className="text-4xl text-black font-semibold mt-10 mb-5">Chat</h1>
           <p className="text-black/60 md:text-lg">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium
-            soluta ad amet sed ipsam, ab necessitatibus illo officia
-            voluptatibus tenetur tempora autem voluptates impedit, suscipit odio
-            recusandae, asperiores id natus.
+            Experience automotive enlightenment with our AI Chat feature! Our
+            tireless chatbot is your automotive companion, providing instant
+            expert advice and personalized recommendations. Say hello to
+            hassle-free solutions. Your road to automotive excellence starts
+            here with MotorMentor - the future of automotive guidance!
           </p>
         </div>
       </div>
@@ -131,7 +132,7 @@ export default function Features(): JSX.Element {
                   <BuildCircleIcon className="text-black/60 text-5xl" />
                 </span>
                 <span className="inline-block text-lg">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing.
+                  Maintenance Reminder: Check Your Oil!
                 </span>
               </div>
             </AnimatedNotif>
@@ -142,7 +143,7 @@ export default function Features(): JSX.Element {
                   <ReportProblemIcon className="text-amber-400 text-5xl" />
                 </span>
                 <span className="inline-block text-lg">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing.
+                  Stay Safe: Tire Pressure Low!
                 </span>
               </div>
             </AnimatedNotif>
@@ -153,7 +154,7 @@ export default function Features(): JSX.Element {
                   <SyncProblemIcon className="text-primary text-5xl" />
                 </span>
                 <span className="inline-block text-lg">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing.
+                  Urgent: Recall Alert for Your Vehicle!
                 </span>
               </div>
             </AnimatedNotif>
@@ -163,10 +164,9 @@ export default function Features(): JSX.Element {
               Maintenance Updates
             </h1>
             <p className="md:text-lg">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-              Laudantium soluta ad amet sed ipsam, ab necessitatibus illo
-              officia voluptatibus tenetur tempora autem voluptates impedit,
-              suscipit odio recusandae, asperiores id natus.
+              Stay Ahead of Car Troubles with our Maintenance Update Feature!
+              Get timely reminders and expert advice for a smoother, worry-free
+              ride. Explore the future of auto care with MotorMentor today!
             </p>
           </div>
         </div>
