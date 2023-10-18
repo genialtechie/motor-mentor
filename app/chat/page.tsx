@@ -8,43 +8,34 @@ import { Menu, Settings, Logout, Send } from '@mui/icons-material';
 import Sidebar from '../components/dashboard/Sidebar';
 import Link from 'next/link';
 import { InputBase, IconButton, Paper } from '@mui/material';
+import { useChat } from 'ai/react';
+
+// save chat to db
+function saveChat() {
+  // TODO
+}
 
 export default function Chat(): JSX.Element {
   const { user } = useAtlasUser();
   const { setError } = useError();
   const [open, setOpen] = useState(false); // sidebar
   // chat state
-  const [messages, setMessages] = useState<any[]>([]);
-  const [message, setMessage] = useState('');
-  const [loading, setLoading] = useState(false);
-
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  // send message
-  const sendMessage = async (e: any) => {
-    e.preventDefault();
-    if (loading) return; // prevent spamming
-    if (message === '') return; // prevent empty messages
-    setLoading(true); // set loading
-    setMessages([...messages, { message, isUser: true }]); // add message to chat
-    setMessage(''); // reset message
-    try {
-      const res = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message }),
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        throw new Error(data.message);
-      }
-      setMessages([...messages, { message: data.message, isUser: false }]);
-    } catch (err) {
+  const {
+    messages,
+    input,
+    isLoading,
+    stop,
+    handleInputChange,
+    setInput,
+    handleSubmit,
+  } = useChat({
+    onError: (err) => {
       console.error(err);
       setError(true);
-    }
-    setLoading(false);
-  };
+    },
+  });
+
+  const inputRef = useRef<HTMLInputElement>(null);
 
   // wait for user to load
   useEffect(() => {
@@ -88,13 +79,17 @@ export default function Chat(): JSX.Element {
                 <div
                   key={i}
                   className={`flex flex-row p-2 m-3 mb-5 ${
-                    msg.isUser ? 'justify-end' : ''
+                    msg.role == 'user' ? 'justify-end' : ''
                   }`}
                 >
                   <div
-                    className={`rounded-lg rounded-br-none ring-1 ring-offset-2 ring-gray-400 ring-opacity-50 p-4 bg-primary text-white`}
+                    className={`rounded-lg ring-1 ring-offset-2 ring-gray-400 ring-opacity-50 p-4 ${
+                      msg.role == 'user'
+                        ? 'bg-primary text-white rounded-br-none'
+                        : 'rounded-bl-none text-black bg-transparent'
+                    }}`}
                   >
-                    {msg.message}
+                    {msg.content}
                   </div>
                 </div>
               ))}
@@ -108,9 +103,7 @@ export default function Chat(): JSX.Element {
                   aria-label="send"
                   onClick={() => {
                     inputRef.current?.focus();
-                    setMessage(
-                      "My car won't start, what could be the problem?"
-                    );
+                    setInput("My car won't start, what could be the problem?");
                   }}
                 >
                   <Send />
@@ -123,22 +116,20 @@ export default function Chat(): JSX.Element {
           <Paper
             component="form"
             className="w-full h-16 flex flex-row items-center"
+            onSubmit={handleSubmit}
           >
             <InputBase
               className="flex-grow px-4"
               placeholder="Type here..."
               inputProps={{ 'aria-label': 'type here', ref: inputRef }}
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter') sendMessage(e);
-              }}
+              value={input}
+              onChange={handleInputChange}
             />
             <IconButton
               type="submit"
               className="mr-4"
               aria-label="send"
-              onClick={sendMessage}
+              disabled={isLoading}
             >
               <Send />
             </IconButton>

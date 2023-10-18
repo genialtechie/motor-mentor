@@ -41,8 +41,10 @@ To run the example locally you need to:
 
 - [x] stripe webhook
 - [x] homepage features section
-- [] ai chatbot
+- [x] ai chatbot
 - [x] maintenance page
 - [x] settings page
+- [] save chat history to db
+- [] fix add a car form bug
 - [] track multiple cars for suscribers
 - [] add more pizzaz to successful suscription page
