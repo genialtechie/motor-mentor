@@ -71,21 +71,30 @@ export default function Chat(): JSX.Element {
           ]}
         />
       </nav>
-      <div className="flex flex-col h-full w-full">
-        <div className="flex flex-col h-full w-full bg-off-white p-10">
+      <div className="flex-1 flex flex-col h-full w-full">
+        <div className="flex-1 flex flex-col h-full w-full bg-off-white p-5 mb-10 md:p-10">
           {messages.length > 0 ? (
             <div className="h-full w-full">
               {messages.map((msg, i) => (
                 <div
                   key={i}
-                  className={`flex flex-row p-2 m-3 mb-5 ${
-                    msg.role == 'user' ? 'justify-end' : ''
+                  className={`p-2 m-3 mb-5 max-w-md md:max-w-2xl ${
+                    msg.role == 'user'
+                      ? 'float-right clear-left'
+                      : 'float-left clear-right'
                   }`}
                 >
                   <div
-                    className={`rounded-lg ring-1 ring-offset-2 ring-gray-400 ring-opacity-50 p-4 ${
+                    className={`text-gray-400 text-xs mb-2 ${
+                      msg.role == 'user' ? 'float-right mr-3' : 'ml-3'
+                    }`}
+                  >
+                    {msg.role == 'user' ? 'You' : 'MotorMentor'}
+                  </div>
+                  <div
+                    className={` clear-both rounded-xl ring-1 ring-offset-2 ring-gray-400 ring-opacity-50 p-4 ${
                       msg.role == 'user'
-                        ? 'bg-primary text-white rounded-br-none'
+                        ? 'bg-primary text-white rounded-br-none '
                         : 'rounded-bl-none text-black bg-transparent'
                     }}`}
                   >
@@ -95,7 +104,7 @@ export default function Chat(): JSX.Element {
               ))}
             </div>
           ) : (
-            <div className="h-full w-full flex items-center justify-center">
+            <div className="h-full w-full flex-1 flex flex-col items-center justify-end">
               <h3 className="rounded-md ring-2 ring-offset-2 ring-gray-400 ring-opacity-50 p-4">
                 My car won't start, what could be the problem?
                 <IconButton
@@ -112,7 +121,7 @@ export default function Chat(): JSX.Element {
             </div>
           )}
         </div>
-        <div className="absolute bottom-0 h-fit w-full bg-white">
+        <div className="fixed bottom-0 h-fit w-full bg-white">
           <Paper
             component="form"
             className="w-full h-16 flex flex-row items-center"

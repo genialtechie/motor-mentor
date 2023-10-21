@@ -9,7 +9,7 @@ export default function ChatLayout({
   children: React.ReactNode;
 }) {
   return (
-    <section className="h-screen overflow-hidden w-full bg-white">
+    <section className="min-h-screen flex flex-col overflow-x-hidden w-full bg-white">
       {children}
     </section>
   );
