@@ -9,22 +9,6 @@ This is an Ai app that tells you what could be wrong with your car based on the 
 - [x] Recall Information
 - [x] Email Notifications
 
-## Requirements
-
-To run the example locally you need to:
-
-1. Sign up at [OpenAI's Developer Platform](https://platform.openai.com/signup).
-2. Go to [OpenAI's dashboard](https://platform.openai.com/account/api-keys) and create an API KEY.
-3. Sign up at [Stripe](https://stripe.com) and get your API keys.
-4. Sign up at [Auth0](https://auth0.com) and get your API keys.
-5. Sign up at [CarMD](https://www.carmd.com/) and get your API keys.
-6. Sign up at [MongoDB](https://www.mongodb.com/) and get your DB URI.
-7. Set the required environment variables as the token value as shown [the example env file](./.env.local.example) but in a new file called `.env.local`
-8. `pnpm install` or `npm install` to install the required dependencies.
-9. Run `npx prisma generate` to generate the Prisma client.
-10. Run `npx prisma db push` to create the database tables.
-11. `pnpm dev` or `npm run dev` to start the development server.
-
 ## Resources
 
 - [Magpollo](https://magpollo.com/) - learn about Magpollo.

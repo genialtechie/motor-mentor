@@ -16,6 +16,7 @@ model User {
   stripeId  String?
   createdAt DateTime @default(now())
   cars      Car[]
+  chats     Chat[]
 }
 
 model Car {
@@ -31,4 +32,13 @@ model Car {
   engine    String?
   ownerId   String
   owner     User     @relation(fields: [ownerId], references: [id])
+}
+
+model Chat {
+  id        String   @id @default(cuid()) @map("_id")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  ownerId   String
+  owner     User     @relation(fields: [ownerId], references: [id])
+  messages  Message[]
 }
