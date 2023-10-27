@@ -50,10 +50,10 @@ export default function QuickCheck() {
       if (user && user.cars && user.cars.length > 0) {
         const car = user.cars[0];
         const recallData = await fetcher(
-          `http://api.carmd.com/v3.0/recall?year=${car.year}&make=${car.make}&model=${car.model}`
+          `https://api.carmd.com/v3.0/recall?year=${car.year}&make=${car.make}&model=${car.model}`
         );
         const maintData = await fetcher(
-          `http://api.carmd.com/v3.0/maint?year=${car.year}&make=${car.make}&model=${car.model}&mileage=${car.mileage}`
+          `https://api.carmd.com/v3.0/maint?year=${car.year}&make=${car.make}&model=${car.model}&mileage=${car.mileage}`
         );
 
         if (recallData.data && maintData.data) {
