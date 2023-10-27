@@ -8,16 +8,16 @@ export default function ChatNow(): JSX.Element {
       className="max-w-md w-full bg-[url('/abstract-bg.jpg')] text-white"
       elevation={3}
     >
-      <div className="backdrop-blur-sm p-5 h-full w-full flex flex-col justify-center">
+      <div className="text-white backdrop-blur-sm p-5 h-full w-full flex flex-col justify-center">
         {/* <h1 className="text-3xl font-bold font-serif mb-3">Chat Now </h1> */}
-        <p className="text-sm mb-5">
+        <p className="text-white text-sm mb-5">
           Unlock the full potential of your subscription! Explore our AI Chatbot
           for swift, precise car problem diagnosis. Shift to smarter,
           hassle-free maintenance. Give it a try today!
         </p>
         <Link
           href="chat"
-          className="cursor-pointer w-fit py-2 px-4 font-semibold text-lg hover:bg-white hover:text-primary rounded-lg transition-all duration-300 ease-in-out"
+          className="text-white cursor-pointer w-fit py-2 px-4 font-semibold text-lg hover:bg-white hover:text-primary rounded-lg transition-all duration-300 ease-in-out"
         >
           Chat Now{' '}
           <LaunchIcon

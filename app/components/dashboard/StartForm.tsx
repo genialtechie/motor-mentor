@@ -165,7 +165,7 @@ export default function StartForm({
   const [models, setModels] = useState([]);
 
   const fetchMakes = (year: string) => {
-    const url = `http://api.carmd.com/v3.0/make?year=${year}`;
+    const url = `https://api.carmd.com/v3.0/make?year=${year}`;
     fetch(url, {
       method: 'GET',
       headers: {
@@ -187,7 +187,7 @@ export default function StartForm({
   };
 
   const fetchModels = (year: string, make: string) => {
-    const url = `http://api.carmd.com/v3.0/model?year=${year}&make=${make}`;
+    const url = `https://api.carmd.com/v3.0/model?year=${year}&make=${make}`;
     fetch(url, {
       method: 'GET',
       headers: {
@@ -236,6 +236,7 @@ export default function StartForm({
         <Stepper
           activeStep={activeStep}
           alternativeLabel
+          className="mt-3"
         >
           {steps.map((label, index) => {
             const stepProps: { completed?: boolean } = {};
