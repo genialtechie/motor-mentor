@@ -1,21 +1,35 @@
 import { Card, Paper, TextField, InputAdornment } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
-import { motion } from 'framer-motion';
+import { motion, useInView, useAnimation } from 'framer-motion';
+import { useRef, useEffect } from 'react';
 import BuildCircleIcon from '@mui/icons-material/BuildCircle';
 import ReportProblemIcon from '@mui/icons-material/ReportProblem';
 import SyncProblemIcon from '@mui/icons-material/SyncProblem';
 
 function AnimatedChatBoxUser({ children }: { children: string }): JSX.Element {
+  const userChatRef = useRef(null)
+  const isInView = useInView(userChatRef, {
+    once: true,
+  });
+  const userChatControls = useAnimation();
+
+  useEffect(() => {
+    if(isInView){
+      userChatControls.start({ opacity: 1, x: 0, y: 40 })
+    }
+  }, [isInView]) // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <motion.div
       initial={{ opacity: 0, x: 100, y: 100 }}
-      whileInView={{ opacity: 1, x: 0, y: 40 }}
+      animate={userChatControls}
       transition={{
         duration: 0.8,
         delay: 0.5,
         type: 'spring',
         bounce: 0.25,
+        repeat: 0,
       }}
+      ref={userChatRef}
     >
       <div className="p-2 w-80 h-fit bg-secondary-dark/20 absolute -right-12 rounded-l-xl rounded-tr-xl rounded-br-none">
         <p className="text-black/60 text-sm md:text-lg cursor-default">
@@ -27,16 +41,30 @@ function AnimatedChatBoxUser({ children }: { children: string }): JSX.Element {
 }
 
 function AnimatedChatBoxBot({ children }: { children: string }): JSX.Element {
+  const botChatRef = useRef(null);
+  const isInView = useInView(botChatRef, {
+    once: true
+  });
+  const botChatControls = useAnimation();
+
+  useEffect(() => {
+    if(isInView) {
+      botChatControls.start({ opacity: 1, x: 0, y: 120 })
+    }
+  }, [isInView])
+
   return (
     <motion.div
       initial={{ opacity: 0, x: -100, y: 400 }}
-      whileInView={{ opacity: 1, x: 0, y: 120 }}
+      animate={botChatControls}
       transition={{
         duration: 0.8,
         delay: 1.0,
         type: 'spring',
         bounce: 0.25,
+        repeat: 0,
       }}
+      ref={botChatRef}
     >
       <div className="p-2 w-80 h-fit bg-white/50 absolute -left-12 rounded-r-xl rounded-tl-xl rounded-bl-none">
         <p className="text-black/60 text-sm md:text-lg cursor-default">
@@ -48,16 +76,29 @@ function AnimatedChatBoxBot({ children }: { children: string }): JSX.Element {
 }
 
 function AnimatedNotif({ children }: { children: JSX.Element }): JSX.Element {
+  const notifRef = useRef(null);
+  const isInView = useInView(notifRef, {
+    once: true
+  });
+  const notifControls = useAnimation();
+
+  useEffect(() => {
+    if(isInView){
+      notifControls.start({ opacity: 1, y: 0 })
+    }
+  }, [isInView]);
   return (
     <motion.div
       initial={{ opacity: 0, y: -200 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      animate={notifControls}
       transition={{
         duration: 0.8,
         delay: 0.5,
         type: 'spring',
         bounce: 0.3,
+        repeat: 0,
       }}
+      ref={notifRef}
     >
       {children}
     </motion.div>

@@ -20,11 +20,7 @@ module.exports = {
       },
       fontFamily: {
         serif: [
-          'var(--font-rubik)',
-          'sans-serif',
-          'serif',
-          'system-ui',
-          'ui-sans-serif',
+          'var(--font-rubik)'
         ],
       },
     },

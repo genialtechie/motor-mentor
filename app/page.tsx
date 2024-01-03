@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Pricing from './components/Pricing';
 import Features from './components/Features';
+import Subscribe from './components/Subscribe';
 
 export default function Home() {
   const { user, error, isLoading } = useUser();
@@ -25,8 +26,9 @@ export default function Home() {
       <Nav
         navItems={[
           { name: 'Features', href: '/#features' },
-          { name: 'Pricing', href: '/#pricing' },
-          { name: 'Login', href: '/api/auth/login' },
+          { name: 'Subscribe', href: '/#subscribe'}
+          // { name: 'Pricing', href: '/#pricing' },
+          // { name: 'Login', href: '/api/auth/login' },
         ]}
       />
       <section className="container mt-20 mx-auto max-w-2xl p-5">
@@ -38,8 +40,14 @@ export default function Home() {
           chatbot and dashboard tools.
         </p>
         <div className="mx-auto mt-8 h-fit w-fit">
-          <ButtonInverted
+          {/* <ButtonInverted
             href="api/auth/login"
+            className="px-12 py-4 font-bold text-lg"
+          >
+            Get Started
+          </ButtonInverted> */}
+          <ButtonInverted
+            href="/#subscribe"
             className="px-12 py-4 font-bold text-lg"
           >
             Get Started
@@ -50,7 +58,8 @@ export default function Home() {
         <Lottie animationData={mechanicAnimation} />
       </div>
       <Features />
-      <Pricing />
+      {/* <Pricing /> */}
+      <Subscribe />
       <Footer />
     </div>
   );

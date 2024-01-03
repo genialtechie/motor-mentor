@@ -8,8 +8,14 @@ export default function Footer() {
         <p className="text-3xl md:text-5xl mb-9 max-w-md md:max-w-2xl">
           Become your own car expert, with help.
         </p>
-        <ButtonInverted
+        {/* <ButtonInverted
           href="/api/auth/login"
+          className="px-10 py-3 md:text-xl"
+        >
+          Get Started
+        </ButtonInverted> */}
+        <ButtonInverted
+          href="/#subscribe"
           className="px-10 py-3 md:text-xl"
         >
           Get Started
@@ -94,31 +100,25 @@ export default function Footer() {
               <li className="mb-1">
                 <a
                   className="transition-all cursor-pointer duration-300 hover:text-primary text-sm"
-                  href="#how-it-works"
+                  href="#features"
                 >
                   How it works
                 </a>
               </li>
+              
               <li className="mb-1">
                 <a
                   className="transition-all cursor-pointer duration-300 hover:text-primary text-sm"
-                  href="#recent-work"
+                  href="https://github.com/magpollo"
+                  target='_blank'
                 >
-                  Recent Work
+                  Recent work
                 </a>
               </li>
               <li className="mb-1">
                 <a
                   className="transition-all cursor-pointer duration-300 hover:text-primary text-sm"
-                  href="#scope-of-work"
-                >
-                  Scope of work
-                </a>
-              </li>
-              <li className="mb-1">
-                <a
-                  className="transition-all cursor-pointer duration-300 hover:text-primary text-sm"
-                  href="#get-started"
+                  href="#subscribe"
                 >
                   Get started
                 </a>

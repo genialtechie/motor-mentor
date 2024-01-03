@@ -30,7 +30,7 @@ export default function Nav({
   }, []);
 
   return (
-    <nav className="w-full h-fit flex flex-row justify-between items-center px-4 py-4 fixed z-10 backdrop-blur-sm">
+    <nav id='header' className="w-full h-fit flex flex-row justify-between items-center px-4 py-4 fixed z-10 backdrop-blur-sm">
       <div className="mx-auto w-fit h-fit px-1 py-1 flex flex-row items-center rounded-md border border-solid border-gray-500 bg-slate-300/30">
         <a
           href="/"
