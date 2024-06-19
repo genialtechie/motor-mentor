@@ -5,7 +5,6 @@ import Reveal from './Reveal';
 import SendIcon from '@mui/icons-material/Send';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { encode } from 'querystring';
 
 export default function Subscribe() {
   const [email, setEmail] = useState('');
@@ -64,6 +63,7 @@ export default function Subscribe() {
             data-netlify="true"
             name="newsletter"
             method="POST"
+            onSubmit={handleSubmit}
             netlify-honeypot="bot-field"
             className="mt-10 md:mt-14 text-sm md:text-base h-10 md:h-14 flex flex-row items-center"
           >
@@ -79,9 +79,10 @@ export default function Subscribe() {
                   <InputAdornment
                     className="cursor-pointer"
                     position="end"
-                    onClick={handleSubmit}
                   >
-                    <SendIcon className="origin-center -rotate-45 cursor-pointer" />
+                    <button type="submit">
+                      <SendIcon className="origin-center -rotate-45 cursor-pointer" />
+                    </button>
                   </InputAdornment>
                 ),
               }}
