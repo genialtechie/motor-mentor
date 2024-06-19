@@ -71,7 +71,6 @@ export default function Subscribe() {
             className="mt-10 md:mt-14 text-sm md:text-base h-10 md:h-14 flex flex-row items-center"
           >
             <TextField
-              id="outlined-basic"
               label="Enter your email"
               InputProps={{
                 endAdornment: (
@@ -88,6 +87,7 @@ export default function Subscribe() {
               className="mb-3 w-full"
               type="email"
               name="email"
+              id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               onBlur={validateEmail}
