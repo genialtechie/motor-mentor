@@ -28,7 +28,8 @@ This is an Ai app that tells you what could be wrong with your car based on the 
 - [x] ai chatbot
 - [x] maintenance page
 - [x] settings page
+- [x] fix add a car form bug
 - [] save chat history to db
-- [] fix add a car form bug
 - [] track multiple cars for suscribers
 - [] add more pizzaz to successful suscription page
+- [] fix subscription bug
