@@ -22,17 +22,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} ${rubik.variable} flex flex-col`}>
-        <form
-          name="newsletter"
-          data-netlify="true"
-          netlify-honeypot="bot-field"
-          hidden
-        >
-          <input
-            type="email"
-            name="email"
-          />
-        </form>
         <AuthProvider>{children}</AuthProvider>
       </body>
     </html>

@@ -25,20 +25,17 @@ export default function Subscribe() {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     validateEmail();
-    const encode = (data: any) => {
-      return Object.keys(data)
-        .map(
-          (key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key])
-        )
-        .join('&');
-    };
 
     if (!emailError) {
       // Proceed with form submission logic
+      const myForm = document.getElementById('newsletter') as HTMLFormElement;
+      const formData = new FormData(myForm);
+
+      const urlSearchParams = new URLSearchParams(formData as any);
       fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: encode({ 'form-name': 'newsletter', email }),
+        body: urlSearchParams.toString(),
       })
         .then(() => {
           alert('Successfully submitted!');
@@ -70,6 +67,11 @@ export default function Subscribe() {
             netlify-honeypot="bot-field"
             className="mt-10 md:mt-14 text-sm md:text-base h-10 md:h-14 flex flex-row items-center"
           >
+            <input
+              type="hidden"
+              name="form-name"
+              value="newsletter"
+            />
             <TextField
               label="Enter your email"
               InputProps={{
