@@ -1,6 +1,3 @@
-'use client';
-
-import { Input, InputAdornment } from '@mui/material';
 import Reveal from './Reveal';
 import SendIcon from '@mui/icons-material/Send';
 import { useState } from 'react';
@@ -27,7 +24,7 @@ export default function Subscribe() {
 
     if (!emailError) {
       // Proceed with form submission logic
-      const myForm = document.getElementById('newsletter') as HTMLFormElement;
+      const myForm = document.getElementById('subscribe') as HTMLFormElement;
       const formData = new FormData(myForm);
 
       const urlSearchParams = new URLSearchParams(formData as any);
@@ -59,9 +56,9 @@ export default function Subscribe() {
             Be the first to know when we launch.
           </h3>
           <form
-            id="newsletter"
+            id="subscribe"
             data-netlify="true"
-            name="newsletter"
+            name="subscribe"
             method="POST"
             onSubmit={handleSubmit}
             netlify-honeypot="bot-field"
