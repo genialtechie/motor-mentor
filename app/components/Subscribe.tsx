@@ -1,6 +1,6 @@
 'use client';
 
-import { TextField, InputAdornment } from '@mui/material';
+import { Input, InputAdornment } from '@mui/material';
 import Reveal from './Reveal';
 import SendIcon from '@mui/icons-material/Send';
 import { useState } from 'react';
@@ -72,22 +72,20 @@ export default function Subscribe() {
               name="form-name"
               value="newsletter"
             />
-            <TextField
-              label="Enter your email"
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment
-                    className="cursor-pointer"
-                    position="end"
-                  >
-                    <button type="submit">
-                      <SendIcon className="origin-center -rotate-45 cursor-pointer" />
-                    </button>
-                  </InputAdornment>
-                ),
-              }}
-              variant="outlined"
-              className="mb-3 w-full"
+            <Input
+              placeholder="Enter your email"
+              endAdornment={
+                <InputAdornment
+                  className="cursor-pointer"
+                  position="end"
+                >
+                  <button type="submit">
+                    <SendIcon className="origin-center -rotate-45 cursor-pointer" />
+                  </button>
+                </InputAdornment>
+              }
+              error={emailError ? true : false}
+              className="mb-3 w-full p-2 md:p-3"
               type="email"
               name="email"
               id="email"
