@@ -68,24 +68,10 @@ export default function Subscribe() {
             className="mt-10 md:mt-14 text-sm md:text-base h-10 md:h-14 flex flex-row items-center"
           >
             <input
-              type="hidden"
-              name="form-name"
-              value="newsletter"
-            />
-            <Input
               placeholder="Enter your email"
-              endAdornment={
-                <InputAdornment
-                  className="cursor-pointer"
-                  position="end"
-                >
-                  <button type="submit">
-                    <SendIcon className="origin-center -rotate-45 cursor-pointer" />
-                  </button>
-                </InputAdornment>
-              }
-              error={emailError ? true : false}
-              className="mb-3 w-full p-2 md:p-3"
+              className={`"mb-3 w-full p-2 md:p-3 border-b bg-transparent outline-none focus:border-black " ${
+                emailError ? 'border-red-500' : 'border-gray-500'
+              }`}
               type="email"
               name="email"
               id="email"
@@ -93,6 +79,12 @@ export default function Subscribe() {
               onChange={(e) => setEmail(e.target.value)}
               onBlur={validateEmail}
             />
+            <button
+              type="submit"
+              className="ml-2 bg-primary text-white px-4 py-2 md:py-3 md:px-5 rounded-lg hover:bg-white hover:text-primary hover:border hover:border-primary transition-all duration-300 ease-in-out"
+            >
+              <SendIcon className="origin-center -rotate-45 cursor-pointer" />
+            </button>
           </form>
         </div>
       </section>
