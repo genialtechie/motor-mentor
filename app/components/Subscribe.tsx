@@ -24,9 +24,7 @@ export default function Subscribe() {
 
     if (!emailError) {
       // Proceed with form submission logic
-      const myForm = document.getElementById(
-        'subscribe-form'
-      ) as HTMLFormElement;
+      const myForm = document.getElementById('sus-form') as HTMLFormElement;
       const formData = new FormData(myForm);
 
       const urlSearchParams = new URLSearchParams(formData as any);
@@ -58,9 +56,9 @@ export default function Subscribe() {
             Be the first to know when we launch.
           </h3>
           <form
-            id="subscribe-form"
+            id="sus-form"
             data-netlify="true"
-            name="subscribe-form"
+            name="sus-form"
             method="POST"
             onSubmit={handleSubmit}
             netlify-honeypot="bot-field"

@@ -26,7 +26,7 @@ export default function Home() {
       <Nav
         navItems={[
           { name: 'Features', href: '/#features' },
-          { name: 'Subscribe', href: '/#subscribe'}
+          { name: 'Subscribe', href: '/#subscribe' },
           // { name: 'Pricing', href: '/#pricing' },
           // { name: 'Login', href: '/api/auth/login' },
         ]}
@@ -59,7 +59,7 @@ export default function Home() {
       </div>
       <Features />
       {/* <Pricing /> */}
-      <Subscribe />
+      {/* <Subscribe /> */}
       <Footer />
     </div>
   );
