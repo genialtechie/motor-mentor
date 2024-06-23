@@ -65,6 +65,11 @@ export default function Subscribe() {
             className="mt-10 md:mt-14 text-sm md:text-base h-10 md:h-14 flex flex-row items-center"
           >
             <input
+              type="hidden"
+              name="form-name"
+              value="sus-form"
+            />
+            <input
               placeholder="Enter your email"
               className={`"mb-3 w-full p-2 md:p-3 border-b bg-transparent outline-none focus:border-black " ${
                 emailError ? 'border-red-500' : 'border-gray-500'
