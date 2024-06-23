@@ -59,7 +59,7 @@ export default function Home() {
       </div>
       <Features />
       {/* <Pricing /> */}
-      {/* <Subscribe /> */}
+      <Subscribe />
       <Footer />
     </div>
   );
