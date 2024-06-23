@@ -31,7 +31,7 @@ export default function Subscribe() {
       fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: urlSearchParams.toString(),
+        body: urlSearchParams,
       })
         .then(() => {
           alert('Successfully submitted!');
